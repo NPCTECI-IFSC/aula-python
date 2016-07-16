@@ -1,0 +1,13 @@
+<html>
+	<head>
+	</head>
+	<body>
+		<a href="{% url 'blog:create' %}">Cadastrar novo</a>
+		<ul>
+			{% for post in posts %}
+				<li><a href="{% url 'blog:edit' pk=post.id %}">{{ post.titulo }}</a></li>
+				<li>{{ post.texto }}</li>
+			{% endfor %}
+		</ul>
+	</body>
+</html>
