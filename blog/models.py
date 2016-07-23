@@ -17,7 +17,7 @@ class Post(models.Model):
 
 class Comentario(models.Model):
 	texto = models.TextField()
-	post = models.ForeignKey(Post, on_delete=models.CASCADE)
+	post = models.ForeignKey(Post, related_name='comentarios', on_delete=models.CASCADE)
 	like = models.BooleanField()
 	autor = models.ForeignKey('auth.User')
 	data = models.DateTimeField(auto_now_add=True)

@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+	<h1>{{ post.titulo }}</h1>
+	<p>{{ post.texto }}</p>
+	<h2>Comentários</h2>
+	<ul>
+	{% for comentario in post.comentarios.all %}
+		<li>{{ comentario.texto }}</li>
+	{% endfor %}
+	</ul>
+	{% if request.user.is_authenticated %}
+	<form method="POST">
+		{% csrf_token %}
+		{{ form.as_p }}
+		<button type="submit">Enviar</button>
+	</form>
+	{% endif %}
+{% endblock %}

@@ -23,6 +23,7 @@
     </div>
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					  <ul class="nav navbar-nav">
+					{% if request.user.is_authenticated %}
 						<li class="dropdown">
 						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Post <span class="caret"></span></a>
 						  <ul class="dropdown-menu">
@@ -30,6 +31,14 @@
 							<li><a href="{% url 'blog:create' %}">Inserir</a></li>
 						  </ul>
 						</li>
+						<li>
+							<a href="{% url 'logout' %}">Logout</a>
+						</li>
+						{% else %}
+						<li>
+							<a href="{% url 'login' %}">Login</a>
+						</li>
+						{% endif %}
 					  </ul>
 				</div>
 			</div>
@@ -40,7 +49,7 @@
 				{% block content %}
 					{% for obj in objects %}
 						<div class="panel panel-default">
-						  <div class="panel-heading">{{ obj.titulo }}</div>
+						  <div class="panel-heading"><a href="{% url 'blog:detail' obj.id %}">{{ obj.titulo }} escrito por {{ obj.autor }}</a></div>
 						  <div class="panel-body">
 							    {{ obj.texto }}
 						  </div>

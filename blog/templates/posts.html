@@ -14,6 +14,7 @@
 		</thead>
 		<tbody>
 			{% for post in posts %}
+			<tr>
 				<td><a href="{% url 'blog:edit' pk=post.id %}">{{ post.titulo }}</a></td>
 				<td>{{ post.texto }}</td>
 				<td>
@@ -24,6 +25,7 @@
 						<i class="glyphicon glyphicon-trash"></i>
 					</a>
 				</td>
+			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
