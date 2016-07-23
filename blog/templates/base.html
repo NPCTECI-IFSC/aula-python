@@ -1,0 +1,53 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" href="{% static 'lib/bootstrap/css/bootstrap.min.css' %}">
+		<script src="{% static 'lib/jquery.min.js' %}"></script>
+		<script src="{% static 'lib/bootstrap/js/bootstrap.min.js' %}"></script>
+		<meta charset="utf-8">
+	</head>
+	<body>
+	{% block menu %}
+		<nav class="navbar navbar-default">
+		 	<div class="container-fluid">
+
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="/">Home</a>
+    </div>
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					  <ul class="nav navbar-nav">
+						<li class="dropdown">
+						  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Post <span class="caret"></span></a>
+						  <ul class="dropdown-menu">
+							<li><a href="{% url 'blog:list' %}">Listar</a></li>
+							<li><a href="{% url 'blog:create' %}">Inserir</a></li>
+						  </ul>
+						</li>
+					  </ul>
+				</div>
+			</div>
+		</nav>
+		{% endblock menu %}
+		<div class="container">
+			<div class="col-md-12">
+				{% block content %}
+					{% for obj in objects %}
+						<div class="panel panel-default">
+						  <div class="panel-heading">{{ obj.titulo }}</div>
+						  <div class="panel-body">
+							    {{ obj.texto }}
+						  </div>
+						</div>
+					{% endfor  %}
+				{% endblock content %}
+			</div>
+		</div>
+	</body>
+</html>
